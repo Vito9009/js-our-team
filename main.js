@@ -57,22 +57,24 @@ let containerTeam = document.querySelector(".team-container");    // Selezionare
 
 let infoBox = "";
 
-for (let i = 0; i < team.length; i++){                          // Ciclo for per creazione div da stampare in HTML
+for (let i in team){                          // For...in per creazione div da stampare in HTML
   infoBox += `
-              <div class="team-card">
-                <div class="card-image">
-                  <img src="img/${team[i].image}"/>
-                </div>
+    <div class="team-card">
+      <div class="card-image">
+        <img src="img/${team[i].image}"/>
+      </div>
 
-                <div class="card-text">
-                  <h3>${team[i].name}</h3>
-                  <p>${team[i].role}</p>
-                </div>    
-              </div>
-            `
+      <div class="card-text">
+        <h3>${team[i].name}</h3>
+        <p>${team[i].role}</p>
+      </div>    
+    </div>
+  `;
 }
 
-containerTeam.innerHTML += infoBox;                             // Stampa in HTML le info dei 6 profili esistenti
+containerTeam.innerHTML += infoBox;           // Stampa in HTML le info dei 6 profili esistenti
+
+
 
 
 // Possibilità di aggiungere nuovi profili direttamente dalla pagina cliccando sul pulsante "Add"
@@ -85,29 +87,33 @@ let sendInfoBtn = document.querySelector("#addMemberButton");
 
 sendInfoBtn.addEventListener('click', function(){             // Aggiunta di nuovi utenti tramite il pulsante "Add"
   
+  let newUserInfoObject = {                                   // Creazione nuovo oggetto
+    name : insertName.value,
+    role : insertRole.value,
+    image : insertImg.value,
+  }
+
+  team.push(newUserInfoObject);                               // Push del nuovo oggetto
+  
   let newUserInfoBox = "";
-             
-      newUserInfoBox += `
-                  <div class="team-card">
-                    <div class="card-image">
-                      <img src="img/${insertImg.value}.jpg">
-                    </div>
 
-                    <div class="card-text">
-                      <h3>${insertName.value}</h3>
-                      <p>${insertRole.value}</p>
-                    </div>    
-                  </div>
-                `;
+  newUserInfoBox += `
+      <div class="team-card">
+        <div class="card-image">
+          <img src="img/${insertImg.value}.jpg">
+        </div>
 
-                console.log("Immagine: ", insertImg.value);
-                console.log("Nome: ", insertName.value);
-                console.log("Ruolo: ", insertRole.value);
+        <div class="card-text">
+          <h3>${insertName.value}</h3>
+          <p>${insertRole.value}</p>
+        </div>    
+      </div>
+    `;
 
     containerTeam.innerHTML += newUserInfoBox;                // Aggiunta del nuovo profilo utente a quelli già esistenti
 }
 );
 
 /*
-DA RIVEDERE. SOLUZIONE BTN FUNZIONANTE, MA NON PERFETTAMENTE LEGATA ALLA TRACCIA
+ console.log(team); per visualizzare in console l'oggetto o gli oggetti aggiunti dall'utente
 */
