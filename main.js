@@ -73,17 +73,41 @@ for (let i = 0; i < team.length; i++){                          // Ciclo for per
 }
 
 containerTeam.innerHTML += infoBox;                             // Stampa in HTML le info dei 6 profili esistenti
+
+
+// Possibilità di aggiungere nuovi profili direttamente dalla pagina cliccando sul pulsante "Add"
+
+let insertName = document.querySelector("#name");
+let insertRole = document.querySelector("#role");
+let insertImg = document.querySelector("#image");
+
+let sendInfoBtn = document.querySelector("#addMemberButton");
+
+sendInfoBtn.addEventListener('click', function(){             // Aggiunta di nuovi utenti tramite il pulsante "Add"
+  
+  let newUserInfoBox = "";
+             
+      newUserInfoBox += `
+                  <div class="team-card">
+                    <div class="card-image">
+                      <img src="img/${insertImg.value}.jpg">
+                    </div>
+
+                    <div class="card-text">
+                      <h3>${insertName.value}</h3>
+                      <p>${insertRole.value}</p>
+                    </div>    
+                  </div>
+                `;
+
+                console.log("Immagine: ", insertImg.value);
+                console.log("Nome: ", insertName.value);
+                console.log("Ruolo: ", insertRole.value);
+
+    containerTeam.innerHTML += newUserInfoBox;                // Aggiunta del nuovo profilo utente a quelli già esistenti
+}
+);
+
 /*
-<div class="team-card">
-  <div class="card-image">
-    <img
-      src="img/wayne-barnett-founder-ceo.jpg"
-      alt="Wayne Barnett"
-    />
-  </div>
-  <div class="card-text">
-    <h3>Wayne Barnett</h3>
-    <p>Founder & CEO</p>
-  </div>
-</div>
+DA RIVEDERE. SOLUZIONE BTN FUNZIONANTE, MA NON PERFETTAMENTE LEGATA ALLA TRACCIA
 */
