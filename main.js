@@ -111,6 +111,11 @@ sendInfoBtn.addEventListener('click', function(){             // Aggiunta di nuo
     `;
 
     containerTeam.innerHTML += newUserInfoBox;                // Aggiunta del nuovo profilo utente a quelli già esistenti
+
+    //Svuotare input dopo l'aggiunta del nuovo utente
+    insertName.value = "";
+    insertRole.value = "";
+    insertImg.value = "";
 }
 );
 
